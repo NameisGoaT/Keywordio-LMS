@@ -1,0 +1,23 @@
+{% extends "Lms/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<h2 id="bookstitle" class="font-weight-bold text-center">Keywordio LMS</h2>
+
+<h3 class="text-center mb-5">Books available :{{ bookss.count }} Book{{ bookss.count|pluralize }}</h3>
+
+{% for books in bookss %}
+<div class="row justify-content-center my-3">
+  <div class="col-md-10">
+    <a href="{% url 'books:detail' books.id %}">
+      <h2>{{ books.title }}</h2>
+    </a>
+    <h5 class="text-muted">{{ books.date|date:'M d Y'|upper }}</h5>
+    <h4>{{ books.description|striptags|truncatechars:100 }}</h4>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}
